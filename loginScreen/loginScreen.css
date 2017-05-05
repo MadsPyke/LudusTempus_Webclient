@@ -1,0 +1,45 @@
+.loginScreen {
+    height: 100%;
+    width: 100%;
+    background-image: url("../Image/gamingBackground.jpg");
+    background-size: 100% auto;
+    color:ghostwhite;
+    margin: 0;
+    font-family: "Times New Roman";
+    position: center;
+}
+
+.loginScreen-heading {
+    padding-top: 1%;
+    font-size: 200%;
+}
+
+.loginScreen-text {
+    font-size: 200%;
+    color: whitesmoke;
+    margin: 0px 37%;
+    padding: 3%;
+    margin-top: 10%;
+    background-color: rgba(79, 87, 90, 0.4);
+}
+
+#studieNrInput {
+    background-color: #FFF;
+    min-height: 5%;
+    margin-left: 3%;
+    padding: 5%;
+}
+
+#passwordInput {
+    background-color: #FFF;
+    min-height: 5%;
+    margin-left: 3%;
+    padding: 5%;
+}
+
+#passwordEnter {
+    background-color: #FFF;
+    min-height: 5%;
+    margin-top: 5%;
+    padding: 0% 20% 0% 20%;
+}

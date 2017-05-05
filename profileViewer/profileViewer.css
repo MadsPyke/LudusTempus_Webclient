@@ -1,0 +1,112 @@
+
+
+
+body{
+    background-image: url("../Image/bg3.png");
+    color: white;
+    position: center;
+    background-size: 100% auto;
+}
+
+.profile{
+    position: relative;
+    font-family: 'Bitter', serif;
+    font-size: large;
+    text-align: center;
+    font-size: 200%;
+}
+
+.searchBox {
+    font-size: 200%;
+    padding: 3%;
+    margin-top: 0%;
+}
+
+#searchProfile {
+    min-height: 2.5%;
+    margin-left: .5%;
+    padding: .5%;
+    position: absolute;
+}
+
+
+.profile-picture {
+    display: block;
+    margin: 0 auto;
+    content:url("../Image/s153966.png");
+    border-radius: 50%;
+    border: 2px solid #000000;
+}
+
+.lolview{
+    border: 4px solid #000000;
+    display: inline-flex;
+    background-image: url("../Image/lolbg.jpg");
+    background-size: 100% auto;
+    font-family: 'Open Sans', sans-serif;
+    color: ghostwhite;
+}
+
+div.lolrank {
+    margin: 160px;
+    float: left;
+    width: 300px;
+    height: 300px;
+    position: center;
+
+}
+.lolrank-picture {
+    float: left;
+    width: 300px;
+    height: 300px;
+
+}
+
+#lolRankImage {
+    width: 300px;
+    height: 300px;
+
+}
+
+#lolFlexRankImage {
+    width: 300px;
+    height: 300px;
+}
+
+.lolicon {
+    margin: 160px;
+    float: left;
+    width: 300px;
+    height: 300px;
+}
+
+.lolsummoner-icon {
+    content:url("../Image/scuttle.png");
+    float: left;
+    width: 300px;
+    height: 300px;
+    border: 2px solid #000000;
+    border-radius: 50%;
+}
+
+.lolroles {
+    margin: 160px;
+    float: left;
+    width: 300px;
+    position: center;
+}
+
+.lol_desc {
+    font-size: 200%;
+    text-align: center;
+    background-color: rgba(30, 150, 149, 0.45);
+}
+
+
+.lol_rolesdesc {
+    font-size: 200%;
+    text-align: center;
+    background-color: rgba(30, 150, 149, 0.45);
+}
+
+

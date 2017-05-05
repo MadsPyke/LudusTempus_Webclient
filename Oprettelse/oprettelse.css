@@ -1,0 +1,34 @@
+
+body{
+    background-image: url("../Image/bg3.png");
+    position: center;
+    background-size: 100% auto;
+    text-align: center;
+}
+
+.overview{
+    position: relative;
+    font-family: 'Bitter', serif;
+    font-size: large;
+    text-align: center;
+    font-size: 500%;
+}
+
+.info {
+    position: relative;
+    font-family: 'Bitter', serif;
+    font-size: large;
+    text-align: center;
+    font-size: 200%;
+    display: inline-flex;
+
+    box-sizing: border-box;
+}
+
+.mytext {
+    width: 200px;
+    height: 50px;
+    font-size: medium;
+    text-align: center;
+}
+
