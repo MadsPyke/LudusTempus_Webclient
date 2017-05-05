@@ -17,6 +17,7 @@
 <script src=loginScreen.js></script>
 <script src="../soapclient.js"></script>
 <script src="../jquery-3.2.1.js"></script>
+<script src="../jquery.soap.js"></script>
 
 
 <script>
@@ -40,8 +41,8 @@
         var password = document.getElementById('passwordInput').value;
 
         $.ajax({
-            url: 'http://localhost:8080/webapi/brugerautorisation/hentBruger=' + studieNr + '+' +password,
-            dataType: 'json ',
+            url: 'http://ubuntu4.javabog.dk:15366/webservice_war/webapi/brugerautorisation/hentBruger=' + studieNr + '+' +password,
+            dataType: 'json',
             type: 'get',
             cache: false,
             success: function(data) {
@@ -57,4 +58,3 @@
         });
     }
 </script>
-
