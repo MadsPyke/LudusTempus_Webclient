@@ -1,94 +1,9 @@
 <script src = ../jquery-3.2.1.js></script>
-
 <link href="profileViewer.css" type="text/css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Bitter|Open+Sans" rel="stylesheet">
+<script src = profileViewer.js></script>
 
 <p id="info"></p>
-
-<script>
-
-    function updatePage(userName) {
-
-        var Navn, StudieNr, LeagueNavn, DiscordNavn, SkypeNavn, SteamNavn, MainRole, OffRole;
-        var lolRankPicture;
-
-        function saetNavn(n) {
-            Navn = n;
-        }
-
-        function saetStudieNr(n) {
-            StudieNr = n;
-        }
-
-        function saetLeagueNavn(n) {
-            LeagueNavn = n;
-        }
-
-        function saetDiscordNavn(n) {
-            DiscordNavn = n;
-        }
-
-        function saetSkypeNavn(n) {
-            SkypeNavn = n;
-        }
-
-
-        function saetSteamNavn(n) {
-            SteamNavn = n;
-        }
-
-        function saetMain(n) {
-            MainRole = n;
-        }
-
-        function saetOffrole(n) {
-            OffRole = n;
-        }
-
-        function faaLeagueNavn() {
-            return LeagueNavn;
-        }
-
-        function loadLeague() {
-            $.ajax({
-                url: 'http://localhost:8080/webapi/league/getLeagues=' + LeagueNavn,
-                dataType: 'json',
-                type: 'get',
-                success: function (data) {
-                    $.each(data, function (i, item) {
-                        var tier = item[0].tier.toString();
-                        var division = item[0].entries[0].division.toString();
-                        lolRankPicture = tier.toLowerCase() + '_' + division.toLowerCase();
-                        document.getElementById('lolRankImage').src = '../Image/tier-icons/' + lolRankPicture + '.png';
-                        document.getElementById('lolRankText').innerHTML = lolRankPicture.toUpperCase().replace("_", " ");
-
-                        tier = item[1].tier.toString();
-                        division = item[1].entries[0].division.toString();
-                        lolRankPicture = tier.toLowerCase() + '_' + division.toLowerCase();
-                        document.getElementById('lolFlexRankImage').src = '../Image/tier-icons/' + lolRankPicture + '.png';
-                        document.getElementById('lolFlexRankText').innerHTML = lolRankPicture.toUpperCase().replace("_", " ");
-                    });
-                },
-                error: function () {
-                    document.getElementById('lolRankImage').src = '../Image/base-icons/provisional.png';
-                    document.getElementById('lolRankText').innerHTML = "Unranked";
-                }
-            });
-        }
-
-        saetNavn("Martin Jeff Nielsen")
-        saetStudieNr("s153966");
-        saetLeagueNavn(userName);
-        saetDiscordNavn("Jeff9377");
-        saetSkypeNavn("Jeff9377");
-        saetSteamNavn("Jeffmanjohn");
-        saetMain("Top");
-        saetOffrole("Scrub")
-        loadLeague();
-        loadFlexLeague()
-    }
-
-</script>
 
 <div class="searchBox">
     <p> Search: <input type="text" id="searchProfile"></p>
@@ -102,7 +17,6 @@
 
     <button type="button" onclick=" "> Update </button>
 </div>
-
 
 <div class = "lolview">
 
@@ -125,22 +39,10 @@
         </div>
         <div id="lolFlexRankText" class="lol_desc"> </div>
     </div>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
+    <br><br><br><br><br>
     <div class="lolroles">
         <div class="lol_rolesdesc"> Main Role: <script>document.write(MainRole)</script></div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <br<br><br><br><br><br><br>
         <div class="lol_rolesdesc"> Off Role: <script>document.write(OffRole)</script></div>
     </div>
 
@@ -155,7 +57,6 @@
     });
 </script>
 
-<script src = profileViewer.js></script>
 
 
 

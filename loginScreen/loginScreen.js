@@ -1,18 +1,38 @@
-/**
- * Created by Pyke-Laptop on 25-04-2017.
- */
 'use strict';
 
-angular.module('myApp.loginScreen', ['ngRoute'])
+function login() {
+    var studieNr = document.getElementById('studieNrInput').value;
+    var password = document.getElementById('passwordInput').value;
 
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/loginScreen', {
-            templateUrl: 'loginScreen/loginScreen.html',
-            controller: 'loginScreenCtrl'
+    $.ajax({
+        url: 'http://ubuntu4.javabog.dk:15366/webservice_war/webapi/brugerautorisation/hentBruger=' + studieNr + '+' + password,
+        dataType: 'json',
+        type: 'get',
+        cache: false,
+        success: function (data) {
+            if (data != null) {
+                window.location = "../profileViewer/profileViewer.html";
+            } else {
+                alert("Wrong password");
+            }
+        },
+        error: function () {
+            alert("Please enter values");
+        }
+    });
+}
+
+function checkKey() {
+    $(function() {
+        $('#passwordEnter').on('click', function () {
+            login();
         });
-    }])
 
-    .controller('loginScreenCtrl', [function() {
+        $("#passwordInput").keyup(function(event){
+            if(event.keyCode == 13){
+                $("#passwordEnter").click();
+            }
+        });
 
-    }]);
-
+    });
+}
