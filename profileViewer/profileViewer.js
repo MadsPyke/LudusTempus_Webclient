@@ -1,19 +1,10 @@
 'use strict';
 
-var Navn, StudieNr, LeagueNavn, DiscordNavn, SkypeNavn, SteamNavn, MainRole, OffRole;
+var Navn, StudieNr, LeagueName, DiscordName, SkypeName, SteamName, MainRole, OffRole;
 var lolRankPicture;
-
-
-function myFunction1(n1, n2) {
-    return n1 + n2;
-}
 
 function myFunction2() {
     window.alert("Not implemented yet! LUL!");
-}
-
-function faaStudieNr(val){
-    return val + 1;
 }
 
 function updatePage(userName) {
@@ -22,7 +13,7 @@ function updatePage(userName) {
 
 function loadLeague() {
     $.ajax({
-        url: 'http://localhost:8080/webapi/league/getLeagues=' + LeagueNavn,
+        url: 'http://localhost:8080/webapi/league/getLeagues=' + LeagueName,
         dataType: 'json',
         type: 'get',
         success: function (data) {
@@ -48,6 +39,6 @@ function loadLeague() {
         }
     });
 
-    document.getElementsByClassName('lol_rolesdesc').item(0).innerHTML = "Mainrole: <br>" + LeagueNavn;
-    document.getElementsByClassName('lol_rolesdesc').item(1).innerHTML = "Offrole: <br>" + LeagueNavn;
+    document.getElementsByClassName('lol_rolesdesc').item(0).innerHTML = "Mainrole: <br>" + LeagueName;
+    document.getElementsByClassName('lol_rolesdesc').item(1).innerHTML = "Offrole: <br>" + LeagueName;
 }
