@@ -1,23 +1,65 @@
 'use strict';
 
-var Navn, StudieNr, LeagueName, DiscordName, SkypeName, SteamName, MainRole, OffRole;
+var Navn, StudieNr, LeagueName, LeagueLevel, DiscordName, SkypeName, SteamName, MainRole, OffRole;
 var lolRankPicture;
+var urlToWS = 'http://localhost:8080/webapi';
+var profileIconID;
 
 function myFunction2() {
     window.alert("Not implemented yet! LUL!");
 }
 
+function onStartUp() {
+    var urlString = window.location.toString();
+
+    var studieNr = urlString.substring(urlString.indexOf('studieNr=') + 'studieNr='.length, urlString.indexOf('+'));
+    var studieNavn = urlString.substring(urlString.indexOf('studieNavn=') + 'studieNavn='.length);
+    studieNavn = studieNavn.replace("%20", " ").replace("%20", " ");
+
+    console.log(studieNr);
+    console.log(studieNavn);
+
+    document.getElementById('studieInfo').innerHTML = studieNavn + ' - ' + studieNr;
+}
+
 function updatePage(userName) {
     loadLeague();
+    loadUserData();
+    document.getElementById('searchProfile').value = "";
+}
+function loadUserData() {
+    $.ajax({
+        url: urlToWS + '/league/getBasic=' + document.getElementById("searchProfile").value,
+        dataType: 'text',
+        type: 'get',
+        success: function (data) {
+            var obj = JSON.parse(data);
+            $.each(obj, function (i, item) {
+                LeagueName = item.name.toString();
+                LeagueLevel = item.summonerLevel.toString();
+                profileIconID = item.profileIconId.toString();
+
+                document.getElementById('lolProfileImage').src = 'http://ddragon.leagueoflegends.com/cdn/7.9.2/img/profileicon/' + profileIconID + '.png';
+                document.getElementById('summonerName').innerHTML = LeagueName;
+                document.getElementById('profileLevel').innerHTML = 'Level ' + LeagueLevel;
+                document.getElementsByClassName('lol_rolesdesc').item(0).innerHTML = "Mainrole: <br>" + MainRole;
+                document.getElementsByClassName('lol_rolesdesc').item(1).innerHTML = "Offrole: <br>" + OffRole;
+            });
+        }
+
+    });
+
+
 }
 
 function loadLeague() {
     $.ajax({
-        url: 'http://localhost:8080/webapi/league/getLeagues=' + LeagueName,
-        dataType: 'json',
+        url: urlToWS + '/league/getLeagues=' + document.getElementById("searchProfile").value,
+        dataType: 'text',
         type: 'get',
         success: function (data) {
-            $.each(data, function (i, item) {
+            var obj = JSON.parse(data);
+            $.each(obj, function (i, item) {
                 var tier = item[0].tier.toString();
                 var division = item[0].entries[0].division.toString();
                 lolRankPicture = tier.toLowerCase() + '_' + division.toLowerCase();
@@ -39,6 +81,4 @@ function loadLeague() {
         }
     });
 
-    document.getElementsByClassName('lol_rolesdesc').item(0).innerHTML = "Mainrole: <br>" + LeagueName;
-    document.getElementsByClassName('lol_rolesdesc').item(1).innerHTML = "Offrole: <br>" + LeagueName;
 }

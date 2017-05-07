@@ -9,13 +9,19 @@
     <p> Search: <input type="text" id="searchProfile"></p>
 </div>
 
-<div class="profile">
+<div id="profileName" class="profile">
 
-    <p><script>document.write(Navn + " - " + StudieNr); </script></p>
+    <p id="studieInfo"> <script>document.write(Navn + " - " + StudieNr); </script></p>
 
-    <div class = "profile-picture"></div>
+    <div class = "profile-picture">
+        <img src="" id="lolProfileImage">
+    </div>
 
     <button type="button" onclick=" "> Update </button>
+
+    <p id="summonerName">  </p>
+    <p id="profileLevel">  </p>
+
 </div>
 
 <div class = "lolview">
@@ -41,14 +47,18 @@
     </div>
     <br><br><br><br><br>
     <div class="lolroles">
-        <div class="lol_rolesdesc"> Main Role: <script>document.write(MainRole)</script></div>
-        <br<br><br><br><br><br><br>
-        <div class="lol_rolesdesc"> Off Role: <script>document.write(OffRole)</script></div>
+
+        <div id="mainRole" class="lol_rolesdesc"> Main Role: <script>document.write(MainRole)</script></div>
+        <br><br><br><br><br><br><br>
+        <div id="offRole" class="lol_rolesdesc"> Off Role: <script>document.write(OffRole)</script></div>
+
     </div>
 
 </div>
 
 <script>
+    onStartUp();
+
     $("#searchProfile").keyup(function(event){
         if(event.keyCode == 13){
             var searchedProfile = document.getElementById('searchProfile').value;

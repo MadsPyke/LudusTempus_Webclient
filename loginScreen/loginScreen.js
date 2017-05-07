@@ -5,13 +5,14 @@ function login() {
     var password = document.getElementById('passwordInput').value;
 
     $.ajax({
-        url: 'http://ubuntu4.javabog.dk:15366/webservice_war/webapi/brugerautorisation/hentBruger=' + studieNr + '+' + password,
+        url: 'http://localhost:8080/webapi/brugerautorisation/hentBruger=' + studieNr + '+' + password,
         dataType: 'json',
         type: 'get',
         cache: false,
         success: function (data) {
             if (data != null) {
-                window.location = "../profileViewer/profileViewer.html";
+                    var studieNavn = data.fornavn.toString() + ' ' + data.efternavn.toString();
+                    window.location = "../profileViewer/profileViewer.html?" + 'studieNr=' + studieNr + '+studieNavn=' + studieNavn;
             } else {
                 alert("Wrong password");
             }
@@ -30,7 +31,7 @@ function checkKey() {
 
         $("#passwordInput").keyup(function(event){
             if(event.keyCode == 13){
-                $("#passwordEnter").click();
+                login();
             }
         });
 

@@ -29,13 +29,13 @@ body{
     position: absolute;
 }
 
-
-.profile-picture {
+#lolprofileimage {
     display: block;
     margin: 0 auto;
-    content:url("../Image/s153966.png");
     border-radius: 50%;
     border: 2px solid #000000;
+    width: 200px;
+    height: 200px;
 }
 
 .lolview{
