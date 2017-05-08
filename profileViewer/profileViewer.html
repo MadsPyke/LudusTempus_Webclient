@@ -6,7 +6,7 @@
 <p id="info"></p>
 
 <div class="searchBox">
-    <p> Search: <input type="text" id="searchProfile"></p>
+    <p> Search: <input type="text" id="searchProfile" placeholder="Enter Studynr"></p>
 </div>
 
 <div id="profileName" class="profile">
@@ -22,6 +22,18 @@
     <p id="summonerName">  </p>
     <p id="profileLevel">  </p>
 
+<<<<<<< HEAD
+=======
+    <br>
+
+    <div class="infodesc">
+        <div class="infos"> Discord: <script>document.write(DiscordName)</script></div>
+        <br>
+
+        <div class="infos"> Skype: <script>document.write(SkypeName)</script></div>
+    </div>
+
+>>>>>>> origin/master
 </div>
 
 <div class = "lolview">
@@ -47,18 +59,28 @@
     </div>
     <br><br><br><br><br>
     <div class="lolroles">
+<<<<<<< HEAD
 
         <div id="mainRole" class="lol_rolesdesc"> Main Role: <script>document.write(MainRole)</script></div>
         <br><br><br><br><br><br><br>
         <div id="offRole" class="lol_rolesdesc"> Off Role: <script>document.write(OffRole)</script></div>
 
+=======
+        <div class="lol_rolesdesc"> Main Role:<br> <script>document.write(MainRole)</script></div>
+        <br<br><br><br><br><br><br>
+        <div class="lol_rolesdesc"> Off Role: <br> <script>document.write(OffRole)</script></div>
+>>>>>>> origin/master
     </div>
 
 </div>
 
 <script>
+<<<<<<< HEAD
     onStartUp();
 
+=======
+    // 13 = Enter key.
+>>>>>>> origin/master
     $("#searchProfile").keyup(function(event){
         if(event.keyCode == 13){
             var searchedProfile = document.getElementById('searchProfile').value;

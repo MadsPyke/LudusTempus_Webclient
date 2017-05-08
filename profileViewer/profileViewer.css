@@ -1,6 +1,4 @@
 
-
-
 body{
     background-image: url("../Image/bg.png");
     color: white;
@@ -18,15 +16,14 @@ body{
 
 .searchBox {
     font-size: 200%;
-    padding: 3%;
-    margin-top: 0%;
 }
 
 #searchProfile {
-    min-height: 2.5%;
     margin-left: .5%;
     padding: .5%;
     position: absolute;
+    text-align: center;
+    font-size: 50%;
 }
 
 #lolprofileimage {
@@ -92,5 +89,18 @@ div.lolrank {
     text-align: center;
     background-color: rgba(30, 150, 149, 0.45);
 }
+
+.infodesc {
+    font-size: 100%;
+    text-align: center;
+    display: inline-table;
+}
+
+.infos{
+    font-size: 100%;
+    text-align: center;
+}
+
+
 
 
