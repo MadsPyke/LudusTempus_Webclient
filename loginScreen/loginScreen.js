@@ -1,13 +1,13 @@
 'use strict';
 
-var dataBaseUrl = 'http://localhost:8080/webapi';
+var dataBaseUrl = 'http://ubuntu4.javabog.dk:15366/webservice_war/webapi';
 
 function login() {
     var studieNr = document.getElementById('studieNrInput').value;
     var password = document.getElementById('passwordInput').value;
 
     $.ajax({
-        url: 'http://localhost:8080/webapi/brugerautorisation/hentBruger=' + studieNr + '+' + password,
+        url: dataBaseUrl + '/brugerautorisation/hentBruger=' + studieNr + '+' + password,
         dataType: 'json',
         type: 'get',
         cache: false,

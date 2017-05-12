@@ -2,7 +2,7 @@
 
 function createAccount(studieNr, studieNavn) {
 
-    var theUrl = 'http://localhost:8080/webapi/database';
+    var theUrl = 'http://ubuntu4.javabog.dk:15366/webservice_war/webapi/database';
 
     var username = document.getElementById('Username').value;
     var skype = document.getElementById('Skype').value;
@@ -18,11 +18,9 @@ function createAccount(studieNr, studieNavn) {
         type: 'get',
         success: function (data) {
             window.location = "../profileViewer/profileViewer.html?" + 'studieNr=' + studieNr + '+studieNavn=' + studieNavn;
-            //console.log(theUrl + '/createUser=' + studieNr + '+' + username + '+' + skype + '+' + discord + '+' + lolName + '+' + mainRole + '+' + offRole);
         },
         error: function () {
             window.location = "../profileViewer/profileViewer.html?" + 'studieNr=' + studieNr + '+studieNavn=' + studieNavn;
-            //console.log(theUrl + '/createUser=' + studieNr + '+' + username + '+' + skype + '+' + discord + '+' + lolName + '+' + mainRole + '+' + offRole);
         }
     });
 

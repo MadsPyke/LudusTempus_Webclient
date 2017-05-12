@@ -2,7 +2,7 @@
 
 var Navn, StudieNr, LeagueName, LeagueLevel, DiscordName, SkypeName, SteamName, MainRole, OffRole;
 var lolRankPicture;
-var urlToWS = 'http://localhost:8080/webapi';
+var urlToWS = 'http://ubuntu4.javabog.dk:15366/webservice_war/webapi';
 var profileIconID;
 
 function updateButton() {
