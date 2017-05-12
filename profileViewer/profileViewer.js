@@ -59,6 +59,7 @@ function loadLeague() {
         success: function (data) {
             var obj = JSON.parse(data);
 
+            console.log(obj);
             if(data.toString().length > 100) {
                 $.each(obj, function (i, item) {
                     var tier = item[0].tier.toString();
@@ -69,7 +70,10 @@ function loadLeague() {
 
                     tier = item[1].tier.toString();
                     division = item[1].entries[0].division.toString();
+
                     lolRankPicture = tier.toLowerCase() + '_' + division.toLowerCase();
+
+                    console.log(lolRankPicture);
                     document.getElementById('lolFlexRankImage').src = '../Image/tier-icons/' + lolRankPicture + '.png';
                     document.getElementById('lolFlexRankText').innerHTML = lolRankPicture.toUpperCase().replace("_", " ");
                 });
