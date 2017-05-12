@@ -1,5 +1,7 @@
 <link href="Signup.css" type="text/css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Bitter|Open+Sans" rel="stylesheet">
+<script src="Signup.js"></script>
+<script src = ../jquery-3.2.1.js></script>
 
 <br>
 <br>
@@ -10,22 +12,25 @@
 <br>
 
 <script>
-    function sub() {
-        window.alert("Not implemented yet! LUL!");
-        return true;
-    }
+    var urlString = window.location.toString();
+    var studieNr = urlString.substring(urlString.indexOf('studieNr=') + 'studieNr='.length, urlString.indexOf('+'));
+
+    var studieNavn = urlString.substring(urlString.indexOf('studieNavn=') + 'studieNavn='.length);
+    studieNavn = studieNavn.replace("%20", " ").replace("%20", " ");
+
+    var url = "../profileViewer/profileViewer.html?" + 'studieNr=' + studieNr + '+studieNavn=' + studieNavn;
 </script>
 
 
 <div class = info>
-    <form action="/action_page.php">
-        Username:<br> <input type="text" name="Username", class="mytext"><br><br>
-        Skype     :<br>      <input type="text" name="Skype", class="mytext"><br><br>
-        Discord   :<br>    <input type="text" name="Discord", class="mytext"><br><br>
-        Lolname   :<br>    <input type="text" name="Lolname", class="mytext"> <br><br>
-        Main Role :<br>       <input type="text" name="Main", class="mytext"><br><br>
-        Off  Role :<br>        <input type="text" name="Off", class="mytext"><br><br>
-        <input type="submit" value="submit" onclick="return sub();" />
+    <form>
+        Username:<br> <input type="text" id="Username", class="mytext"><br><br>
+        Skype     :<br>      <input type="text" id="Skype", class="mytext"><br><br>
+        Discord   :<br>    <input type="text" id="Discord", class="mytext"><br><br>
+        Lolname   :<br>    <input type="text" id="Lolname", class="mytext"> <br><br>
+        Main Role :<br>       <input type="text" id="Main", class="mytext"><br><br>
+        Off  Role :<br>        <input type="text" id="Off", class="mytext"><br><br>
+        <input type="submit" value="submit" onclick="return createAccount(studieNr, studieNavn);" />
 
     </form>
 </div>

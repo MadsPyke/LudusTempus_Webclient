@@ -18,17 +18,146 @@ function onStartUp() {
     var studieNavn = urlString.substring(urlString.indexOf('studieNavn=') + 'studieNavn='.length);
     studieNavn = studieNavn.replace("%20", " ").replace("%20", " ");
 
-    document.getElementById('studieInfo').innerHTML = studieNavn + ' - ' + studieNr;
+    updatePage(studieNr);
 }
 
-function updatePage(userName) {
-    loadLeague();
-    loadUserData();
-    document.getElementById('searchProfile').value = "";
+function updatePage(studyNr) {
+    if(studyNr.length == 7 && studyNr.charAt(0) == 's') {
+        getSummonerName(studyNr);
+        loadProfileInfo(studyNr);
+    } else {
+        loadLeague(document.getElementById("searchProfile").value);
+        loadUserData(document.getElementById("searchProfile").value);
+        document.getElementById('studieInfo').innerHTML = '';
+        document.getElementById('DiscordName').innerHTML = '';
+        document.getElementById('SkypeName').innerHTML = '';
+        document.getElementsByClassName('lol_rolesdesc').item(0).innerHTML = '';
+        document.getElementsByClassName('lol_rolesdesc').item(1).innerHTML = '';
+    }
+        document.getElementById('searchProfile').value = "";
 }
-function loadUserData() {
+
+function loadProfileInfo(studyNr) {
+
+    // Name
     $.ajax({
-        url: urlToWS + '/league/getBasic=' + document.getElementById("searchProfile").value,
+        url: urlToWS + '/database/getUser=' + studyNr,
+        dataType: 'text',
+        type: 'get',
+        success: function (data) {
+            document.getElementById('studieInfo').innerHTML = data.toString() + ' - ' + studyNr;
+        },
+        error: function () {
+
+        }
+    });
+
+    // Discord
+    $.ajax({
+        url: urlToWS + '/database/getDiscord=' + studyNr,
+        dataType: 'text',
+        type: 'get',
+        success: function (data) {
+            document.getElementById('DiscordName').innerHTML = 'Discord: ' + data.toString();
+        },
+        error: function () {
+
+        }
+    });
+
+    // Skype
+    $.ajax({
+        url: urlToWS + '/database/getSkype=' + studyNr,
+        dataType: 'text',
+        type: 'get',
+        success: function (data) {
+            document.getElementById('SkypeName').innerHTML = 'Skype: ' + data.toString();
+        },
+        error: function () {
+
+        }
+    });
+
+    // Main role
+    $.ajax({
+        url: urlToWS + '/database/getMain=' + studyNr,
+        dataType: 'text',
+        type: 'get',
+        success: function (data) {
+            switch(data.toString()) {
+                case '1':
+                    document.getElementsByClassName('lol_rolesdesc').item(0).innerHTML = "Mainrole: <br>" + 'Top';
+                    break;
+                case '2':
+                    document.getElementsByClassName('lol_rolesdesc').item(0).innerHTML = "Mainrole: <br>" + 'Jungle';
+                    break;
+                case '3':
+                    document.getElementsByClassName('lol_rolesdesc').item(0).innerHTML = "Mainrole: <br>" + 'Middle';
+                    break;
+                case '4':
+                    document.getElementsByClassName('lol_rolesdesc').item(0).innerHTML = "Mainrole: <br>" + 'Bot';
+                    break;
+                case '5':
+                    document.getElementsByClassName('lol_rolesdesc').item(0).innerHTML = "Mainrole: <br>" + 'Support';
+                    break;
+            }
+        },
+        error: function () {
+
+        }
+    });
+
+    // Off role
+    $.ajax({
+        url: urlToWS + '/database/getOff=' + studyNr,
+        dataType: 'text',
+        type: 'get',
+        success: function (data) {
+            switch(data.toString()) {
+                case '1':
+                    document.getElementsByClassName('lol_rolesdesc').item(1).innerHTML = "Offrole: <br>" + 'Top';
+                    break;
+                case '2':
+                    document.getElementsByClassName('lol_rolesdesc').item(1).innerHTML = "Offrole: <br>" + 'Jungle';
+                    break;
+                case '3':
+                    document.getElementsByClassName('lol_rolesdesc').item(1).innerHTML = "Offrole: <br>" + 'Middle';
+                    break;
+                case '4':
+                    document.getElementsByClassName('lol_rolesdesc').item(1).innerHTML = "Offrole: <br>" + 'Bot';
+                    break;
+                case '5':
+                    document.getElementsByClassName('lol_rolesdesc').item(1).innerHTML = "Offrole: <br>" + 'Support';
+                    break;
+            }
+        },
+        error: function () {
+
+        }
+    });
+}
+
+function getSummonerName(studyNr) {
+
+    $.ajax({
+        url: urlToWS + '/database/getSummoner=' + studyNr,
+        dataType: 'text',
+        type: 'get',
+        success: function (data) {
+            loadLeague(data.toString());
+            loadUserData(data.toString());
+        },
+        error: function () {
+
+        }
+    });
+}
+
+//2204
+
+function loadUserData(leagueName) {
+    $.ajax({
+        url: urlToWS + '/league/getBasic=' + leagueName,
         dataType: 'text',
         type: 'get',
         success: function (data) {
@@ -39,27 +168,20 @@ function loadUserData() {
                 profileIconID = item.profileIconId.toString();
 
                 document.getElementById('lolProfileImage').src = 'http://ddragon.leagueoflegends.com/cdn/7.9.2/img/profileicon/' + profileIconID + '.png';
-                document.getElementById('summonerName').innerHTML = LeagueName + "   -   " +'Level: ' + LeagueLevel;
-
-                document.getElementsByClassName('lol_rolesdesc').item(0).innerHTML = "Mainrole: <br>" + MainRole;
-                document.getElementsByClassName('lol_rolesdesc').item(1).innerHTML = "Offrole: <br>" + OffRole;
+                document.getElementById('summonerName').innerHTML = 'League info: ' + LeagueName + "   -   " +'Level: ' + LeagueLevel;
             });
         }
-
     });
-
-
 }
 
-function loadLeague() {
+function loadLeague(leagueName) {
     $.ajax({
-        url: urlToWS + '/league/getLeagues=' + document.getElementById("searchProfile").value,
+        url: urlToWS + '/league/getLeagues=' + leagueName,
         dataType: 'text',
         type: 'get',
         success: function (data) {
             var obj = JSON.parse(data);
 
-            console.log(obj);
             if(data.toString().length > 100) {
                 $.each(obj, function (i, item) {
                     var tier = item[0].tier.toString();
@@ -72,8 +194,6 @@ function loadLeague() {
                     division = item[1].entries[0].division.toString();
 
                     lolRankPicture = tier.toLowerCase() + '_' + division.toLowerCase();
-
-                    console.log(lolRankPicture);
                     document.getElementById('lolFlexRankImage').src = '../Image/tier-icons/' + lolRankPicture + '.png';
                     document.getElementById('lolFlexRankText').innerHTML = lolRankPicture.toUpperCase().replace("_", " ");
                 });

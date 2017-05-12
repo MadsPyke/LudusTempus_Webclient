@@ -6,7 +6,7 @@
 <p id="info"></p>
 
 <div class="searchBox">
-    <p> Search: <input type="text" id="searchProfile" placeholder="Enter Studynr"></p>
+    <p> Search: <input type="text" id="searchProfile" placeholder="Enter Studynr or Summoner name"></p>
 </div>
 
 <div id="profileName" class="profile">
@@ -18,22 +18,23 @@
     </div>
 
     <button type="button" onclick="updateButton();"> Update </button>
-    <br>
+    <br><br>
     <div class="infodesc">
-        <div class="infos"> Discord: <script>document.write(DiscordName)</script></div>
+        <div id="DiscordName" class="infos"> Discord: <script>document.write(DiscordName)</script></div>
         <br>
-        <div class="infos"> Skype: <script>document.write(SkypeName)</script></div>
+        <div id="SkypeName" class="infos"> Skype: <script>document.write(SkypeName)</script></div>
         <br>
     </div>
 
     <p id="summonerName">  </p>
     <p id="profileLevel">  </p>
 
-    <br>
-
 </div>
 
+
 <div class = "lolview">
+
+
 
     <div class="lolrank">
         <div class="lol_desc"> Ranked Solo</div>
